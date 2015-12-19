@@ -1,0 +1,42 @@
+[user]
+    name = huangzf
+    email = michaelhuang12@gmail.com
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = auto
+
+[push]
+    default = current
+
+[commit]
+  template = ~/.gitmessage
+
+[core]
+    editor = vim
+    pager = less -R
+    autocrlf = input
+
+[alias]
+    diverges = !bash -c 'diff -u <(git rev-list --first-parent "${1}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    ls = ls-files
+    relast = reset HEAD^
+
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
